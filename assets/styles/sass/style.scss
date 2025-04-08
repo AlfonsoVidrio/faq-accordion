@@ -1,0 +1,167 @@
+@font-face {
+    font-family: "Work Sans";
+    src: url("../../fonts/WorkSans-VariableFont_wght.ttf") format("truetype");
+}
+
+:root {
+    --white: #ffffff;
+    --purple-100: #f9f0ff;
+    --purple-600: #8c6991;
+    --purple-700: #A41FEA;
+    --purple-950: #2f1533;
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none;
+}
+
+html {
+    font: 400 16px 'Work Sans', sans-serif;
+}
+
+body {
+    background: var(--purple-100) url('../../images/background-pattern-desktop.svg') center top no-repeat;
+    background-size: 100% auto;
+
+    @media (max-width: 400px) {
+        background: var(--purple-100) url('../../images/background-pattern-mobile.svg') center top no-repeat;
+    }
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 900px;
+
+    @media (max-width: 400px) {
+        min-height: 812px;
+    }
+
+    .container {
+        background-color: var(--white);
+        max-width: 600px;
+        border-radius: 18px;
+        margin: 24px;
+        padding: 40px;
+        padding-bottom: 18px;
+        box-shadow: rgba(141, 105, 145, 0.2) 0px 10px 46px 0px;
+        
+        @media (max-width: 400px) {
+            padding: 22px;
+            padding-bottom: 6px;
+            border-radius: 8px;
+        }
+    }
+
+    .title {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        margin-bottom: 32px;
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+        }
+    }
+
+    @media (max-width: 400px) {
+        .title {
+            margin-bottom: 26px;
+
+            img {
+                width: 26px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    }
+
+    .accordionItem {
+        &:not(:last-child) {
+            border-bottom: 2px solid var(--purple-100);
+        }
+
+        .question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin: 22px 0 22px;
+            cursor: pointer;
+
+            h2 {
+                font-size: 1.125rem;
+                font-weight: 600;
+                color: var(--purple-950);
+                transition: 0.3s ease;
+            }
+
+            .image {
+                background: url('../../images/icon-plus.svg') center no-repeat;
+                min-width: 30px;
+                min-height: 30px;
+            }
+
+            &.open {
+                .image {
+                    background: url('../../images/icon-minus.svg') center no-repeat;
+                }
+            }
+
+            &:hover {
+                h2 {
+                    color: var(--purple-700);
+                }
+            }
+
+            @media (max-width: 400px) {
+                gap: 2.625rem;
+                margin: 19px 0 19px;
+
+                h2 {
+                    font-size: 1rem;
+                }
+            }
+        }
+
+        &:last-child {
+            .question {
+                padding-bottom: 0;
+            }
+        }
+
+        .answer {
+            max-height: 0;
+            overflow: hidden;
+            color: var(--purple-600);
+            transition: max-height 0.3s ease;
+
+            p {
+                padding-bottom: 30px;
+                line-height: 150%;
+            }
+
+            &.open {
+                height: auto;
+                max-height: 200px;
+            }
+
+            @media (max-width: 400px) {
+                font-size: 0.89rem;
+
+                p {
+                    padding-top: 8px;
+                    padding-bottom: 18px;
+                }
+            }
+        }
+    }
+}
